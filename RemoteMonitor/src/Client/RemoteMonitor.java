@@ -12,9 +12,6 @@ import java.util.zip.ZipOutputStream;
 
 import javax.imageio.ImageIO;
 
-import com.sun.image.codec.jpeg.JPEGCodec;
-import com.sun.image.codec.jpeg.JPEGImageEncoder;
-
 public class RemoteMonitor extends Thread {
 	private Dimension screenSize;
 	private Rectangle rectangle;

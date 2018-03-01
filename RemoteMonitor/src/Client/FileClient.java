@@ -5,6 +5,8 @@
   import java.io.DataOutputStream;
   import java.io.FileOutputStream;
 
+import javax.swing.JOptionPane;
+
   public class FileClient {
       private FileClientSocket cs = null;
 
@@ -92,7 +94,7 @@
               }
               System.out.println("接收完成，文件存为" + savePath + "\n");
 
-            JOptionPane.showMessageDialog(newFrame.getContentPane(), "接收到文件,保存在了D盘!", "系统信息",
+            JOptionPane.showMessageDialog(new JOptionPane(), "接收到文件,保存在了D盘!", "系统信息",
                         JOptionPane.INFORMATION_MESSAGE);
               fileOut.close();
           } catch (Exception e) {
