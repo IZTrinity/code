@@ -4,13 +4,9 @@ import java.io.*;
 
 public class FileClientSocket {
     private String ip;
-
     private int port;
-
     private Socket socket = null;
-
     DataOutputStream out = null;
-
     DataInputStream getMessageStream = null;
 
     public FileClientSocket(String ip, int port) {
@@ -18,12 +14,6 @@ public class FileClientSocket {
         this.port = port;
     }
 
-    /**
-     * ´´½¨socketÁ¬½Ó
-     * 
-     * @throws Exception
-     *             exception
-     */
     public void CreateConnection() throws Exception {
         try {
             socket = new Socket(ip, port);

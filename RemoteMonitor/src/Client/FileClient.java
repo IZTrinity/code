@@ -1,109 +1,102 @@
-  
-  package Client; 
-  import java.io.BufferedOutputStream;
-  import java.io.DataInputStream;
-  import java.io.DataOutputStream;
-  import java.io.FileOutputStream;
+package Client;
 
+import java.io.BufferedOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
+
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-  public class FileClient {
-      private FileClientSocket cs = null;
+public class FileClient {
+	JFrame newFrame = new JFrame();
+	private FileClientSocket cs = null;
+	String ip = MainFrameC.ip;//"localhost" è®¾ç½®æˆæœåŠ¡å™¨IP
+	private int port = 8821;
+	private String sendMessage = "Windwos";
+	public FileClient() {
+		try {
+			if (createConnection()) {
+				sendMessage();
+				getMessage();
+			}
 
-      private String ip = "localhost";// ÉèÖÃ³É·şÎñÆ÷IP
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
 
-      private int port = 8821;
+	private boolean createConnection() {
+		cs = new FileClientSocket(ip, port);
+		try {
+			cs.CreateConnection();
+			System.out.print("connection success!" + "\n");
+			return true;
+		} catch (Exception e) {
+			System.out.print("connection failure!" + "\n");
+			return false;
+		}
+	}
 
-      private String sendMessage = "Windwos";
+	private void sendMessage() {
+		if (cs == null)
+			return;
+		try {
+			cs.sendMessage(sendMessage);
+		} catch (Exception e) {
+			System.out.print("å‘é€æ¶ˆæ¯å¤±è´¥!" + "\n");
+		}
+	}
 
-      public FileClient() {
-          try {
-              if (createConnection()) {
-                  sendMessage();
-                  getMessage();
-              }
+	private void getMessage() {
+		if (cs == null)
+			return;
+		DataInputStream inputStream = null;
+		try {
+			inputStream = cs.getMessageStream();
+		} catch (Exception e) {
+			System.out.print("æ¥æ”¶æ¶ˆæ¯ç¼“å­˜é”™è¯¯\n");
+			return;
+		}
 
-          } catch (Exception ex) {
-              ex.printStackTrace();
-          }
-      }
+		try {
+			String savePath = "D:\\";
+			int bufferSize = 8192;
+			byte[] buf = new byte[bufferSize];
+			int passedlen = 0;
+			long len = 0;
 
-      private boolean createConnection() {
-          cs = new FileClientSocket(ip, port);
-          try {
-              cs.CreateConnection();
-              System.out.print("Á¬½Ó·şÎñÆ÷³É¹¦!" + "\n");
-              return true;
-          } catch (Exception e) {
-              System.out.print("Á¬½Ó·şÎñÆ÷Ê§°Ü!" + "\n");
-              return false;
-          }
+			savePath += inputStream.readUTF();
+			DataOutputStream fileOut = new DataOutputStream(
+					new BufferedOutputStream(new BufferedOutputStream(new FileOutputStream(savePath))));
+			len = inputStream.readLong();
 
-      }
+			System.out.println("æ–‡ä»¶çš„é•¿åº¦ä¸º:" + len + "\n");
+			System.out.println("å¼€å§‹æ¥æ”¶æ–‡ä»¶!" + "\n");
 
-      private void sendMessage() {
-          if (cs == null)
-              return;
-          try {
-              cs.sendMessage(sendMessage);
-          } catch (Exception e) {
-              System.out.print("·¢ËÍÏûÏ¢Ê§°Ü!" + "\n");
-          }
-      }
+			while (true) {
+				int read = 0;
+				if (inputStream != null) {
+					read = inputStream.read(buf);
+				}
+				passedlen += read;
+				if (read == -1) {
+					break;
+				}
+				 //ä¸‹é¢è¿›åº¦æ¡æœ¬ä¸ºå›¾å½¢ç•Œé¢çš„prograssBaråšçš„ï¼Œè¿™é‡Œå¦‚æœæ˜¯æ‰“æ–‡ä»¶ï¼Œå¯èƒ½ä¼šé‡å¤æ‰“å°å‡ºä¸€äº›ç›¸åŒçš„ç™¾åˆ†æ¯”
+                System.out.println("æ–‡ä»¶æ¥æ”¶äº†" +  (passedlen * 100/ len) + "%\n");
+                fileOut.write(buf, 0, read);
+			}
+		
+	         System.out.println("æ¥æ”¶å®Œæˆï¼Œæ–‡ä»¶å­˜ä¸º" + savePath + "\n");
 
-      private void getMessage() {
-          if (cs == null)
-              return;
-          DataInputStream inputStream = null;
-          try {
-              inputStream = cs.getMessageStream();
-          } catch (Exception e) {
-              System.out.print("½ÓÊÕÏûÏ¢»º´æ´íÎó\n");
-              return;
-          }
+			JOptionPane.showMessageDialog(newFrame.getContentPane(), "æ¥æ”¶åˆ°æ–‡ä»¶,ä¿å­˜åœ¨äº†Dç›˜!", "ç³»ç»Ÿä¿¡æ¯",
+						JOptionPane.INFORMATION_MESSAGE);
+             fileOut.close();
+         } catch (Exception e) {
+             System.out.println("æ¥æ”¶æ¶ˆæ¯é”™è¯¯" + "\n");
+             return;
+         }
+     }
 
-          try {
-              //±¾µØ±£´æÂ·¾¶£¬ÎÄ¼şÃû»á×Ô¶¯´Ó·şÎñÆ÷¶Ë¼Ì³Ğ¶øÀ´¡£
-              String savePath = "F:\\";
-              int bufferSize = 8192;
-              byte[] buf = new byte[bufferSize];
-              int passedlen = 0;
-              long len=0;
-              
-              savePath += inputStream.readUTF();
-              DataOutputStream fileOut = new DataOutputStream(new BufferedOutputStream(new BufferedOutputStream(new FileOutputStream(savePath))));
-              len = inputStream.readLong();
-              
-              System.out.println("ÎÄ¼şµÄ³¤¶ÈÎª:" + len + "\n");
-              System.out.println("¿ªÊ¼½ÓÊÕÎÄ¼ş!" + "\n");
-                      
-              while (true) {
-                  int read = 0;
-                  if (inputStream != null) {
-                      read = inputStream.read(buf);
-                  }
-                  passedlen += read;
-                  if (read == -1) {
-                      break;
-                  }
-                  //ÏÂÃæ½ø¶ÈÌõ±¾ÎªÍ¼ĞÎ½çÃæµÄprograssBar×öµÄ£¬ÕâÀïÈç¹ûÊÇ´òÎÄ¼ş£¬¿ÉÄÜ»áÖØ¸´´òÓ¡³öÒ»Ğ©ÏàÍ¬µÄ°Ù·Ö±È
-                  System.out.println("ÎÄ¼ş½ÓÊÕÁË" +  (passedlen * 100/ len) + "%\n");
-
-                  
-                  fileOut.write(buf, 0, read);
-              }
-              System.out.println("½ÓÊÕÍê³É£¬ÎÄ¼ş´æÎª" + savePath + "\n");
-
-            JOptionPane.showMessageDialog(new JOptionPane(), "½ÓÊÕµ½ÎÄ¼ş,±£´æÔÚÁËDÅÌ!", "ÏµÍ³ĞÅÏ¢",
-                        JOptionPane.INFORMATION_MESSAGE);
-              fileOut.close();
-          } catch (Exception e) {
-              System.out.println("½ÓÊÕÏûÏ¢´íÎó" + "\n");
-              return;
-          }
-      }
-
-      public static void main(String arg[]) {
-          new FileClient();
-      }
-  }
+}

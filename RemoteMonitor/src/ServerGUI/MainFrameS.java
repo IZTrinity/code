@@ -1,7 +1,7 @@
 package ServerGUI;
 
 /*
- * ·şÎñÆ÷Ö÷½çÃæ
+ * æœåŠ¡å™¨ä¸»ç•Œé¢
  */
 
 import java.awt.BorderLayout;
@@ -36,7 +36,7 @@ import Server.ServerProcess;
 
 public class MainFrameS extends JFrame implements Runnable {
 
-	// µ¥ÀıÄ£Ê½£¬´ËÀàÖ»ÄÜ±»ÊµÀı»¯Ò»´Î
+	// å•ä¾‹æ¨¡å¼ï¼Œæ­¤ç±»åªèƒ½è¢«å®ä¾‹åŒ–ä¸€æ¬¡
 	private static MainFrameS mfs;
 	
 	private BufferedReader reader;
@@ -45,7 +45,7 @@ public class MainFrameS extends JFrame implements Runnable {
 	 //public static String path =null;
 	static Socket s;
 	
-	// ¶ÔÓ¦button[6~56]£¬ÓÃ×÷±ê¼Ç£¬¼ÇÂ¼button¼à¿ØµÄip
+	// å¯¹åº”button[6~56]ï¼Œç”¨ä½œæ ‡è®°ï¼Œè®°å½•buttonç›‘æ§çš„ip
 	private String ip1[] = new String[51];
 	
 	JTextArea Viewtext = new JTextArea(7, 20);
@@ -54,33 +54,33 @@ public class MainFrameS extends JFrame implements Runnable {
 	private static final long serialVersionUID = 1L;
 	Dimension screenSize;
 	
-	// buttonÊı×é±äÎªÀàµÄ¾Ö²¿±äÁ¿£¬ÈÃÀàµÄËùÓĞ·½·¨¶¼ÄÜÒıÓÃ
+	// buttonæ•°ç»„å˜ä¸ºç±»çš„å±€éƒ¨å˜é‡ï¼Œè®©ç±»çš„æ‰€æœ‰æ–¹æ³•éƒ½èƒ½å¼•ç”¨
 	private JButton[] button;
 	
-	// µ¥ÀıÄ£Ê½£¬´ËÀàÖ»ÄÜ±»newÒ»´Î£¬Ö»ÓĞÒ»¸öÊµÀı£¬ÆäËüÀàÖ»ÄÜÍ¨¹ıÕâ¸ö·½·¨·ÃÎÊ¸ÃÊµÀı
+	// å•ä¾‹æ¨¡å¼ï¼Œæ­¤ç±»åªèƒ½è¢«newä¸€æ¬¡ï¼Œåªæœ‰ä¸€ä¸ªå®ä¾‹ï¼Œå…¶å®ƒç±»åªèƒ½é€šè¿‡è¿™ä¸ªæ–¹æ³•è®¿é—®è¯¥å®ä¾‹
 	public static MainFrameS getInstance(String name) {
 		if(mfs == null) {
-			//Ã»ÓĞÊµÀı»¯¹ı£¬ÓĞÊµÀı»¯¹ıÖ±½Ó·µ»ØÊµÀı
+			//æ²¡æœ‰å®ä¾‹åŒ–è¿‡ï¼Œæœ‰å®ä¾‹åŒ–è¿‡ç›´æ¥è¿”å›å®ä¾‹
 			mfs = new MainFrameS(name);
 		}
 		return mfs;
 	}
 	
-	// µ¥ÀıÄ£Ê½£¬¹¹Ôì·½·¨Ë½ÓĞ»¯£¬Ö»ÄÜÍ¨¹ıgetInstance·½·¨±»µ÷ÓÃ£¬Î¬³ÖÕû¸öÀàÖ»ÓĞÒ»¸öÊµÀı
+	// å•ä¾‹æ¨¡å¼ï¼Œæ„é€ æ–¹æ³•ç§æœ‰åŒ–ï¼Œåªèƒ½é€šè¿‡getInstanceæ–¹æ³•è¢«è°ƒç”¨ï¼Œç»´æŒæ•´ä¸ªç±»åªæœ‰ä¸€ä¸ªå®ä¾‹
 	private MainFrameS(String name) {
 		
 		JPanel[] panel = new JPanel[10];
-		button = new JButton[100];  //ÏÔÊ¾¼à¿ØµÄ°´Å¥?
+		button = new JButton[100];  //æ˜¾ç¤ºç›‘æ§çš„æŒ‰é’®?
 		JLabel[] label = new JLabel[100];
 		ImageIcon[] icon = new ImageIcon[100];
 
 		Container cp = null;
 
-		panel[1] = new JPanel(new GridLayout(1, 0));// ²Ëµ¥
+		panel[1] = new JPanel(new GridLayout(1, 0));// èœå•
 		panel[1].setPreferredSize(new Dimension(685, 175));
-		panel[2] = new JPanel(new GridLayout(10, 4));// ÏÔÊ¾×ÀÃæ
-		panel[3] = new JPanel();// ÎÄ±¾ÊäÈë + time
-		panel[4] = new JPanel();// ÎÄ±¾ÊäÈë
+		panel[2] = new JPanel(new GridLayout(10, 4));// æ˜¾ç¤ºæ¡Œé¢
+		panel[3] = new JPanel();// æ–‡æœ¬è¾“å…¥ + time
+		panel[4] = new JPanel();// æ–‡æœ¬è¾“å…¥
 		panel[5] = new JPanel();// time
 		
 		button[1] = new JButton();
@@ -122,7 +122,7 @@ public class MainFrameS extends JFrame implements Runnable {
 		cp = getContentPane();
 
 		cp.add(panel[1], BorderLayout.NORTH);
-		JScrollPane scrollPane = new JScrollPane(panel[2]);//·ÅÖÃ¼à¿ØµÄ¹ö¶¯Ãæ°å
+		JScrollPane scrollPane = new JScrollPane(panel[2]);//æ”¾ç½®ç›‘æ§çš„æ»šåŠ¨é¢æ¿
 		scrollPane.setBounds(10, 10, 675, 200);
 		panel[2].setPreferredSize(new Dimension(985, 2750));
 		scrollPane.setLocation(0, 153);
@@ -154,7 +154,7 @@ public class MainFrameS extends JFrame implements Runnable {
 
 		Sendtext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				writer.println("Teacher£º" + Sendtext.getText());
+				writer.println("Teacherï¼š" + Sendtext.getText());
 				Sendtext.setText("");
 			}
 		});
@@ -171,29 +171,29 @@ public class MainFrameS extends JFrame implements Runnable {
 
 	}
 	
-	// Õâ¸ö·½·¨ÊÇ½»¸øÏß³ÌÀ´´¥·¢¼à¿ØÍ¼Æ¬¸Ä±äµÄ
+	// è¿™ä¸ªæ–¹æ³•æ˜¯äº¤ç»™çº¿ç¨‹æ¥è§¦å‘ç›‘æ§å›¾ç‰‡æ”¹å˜çš„
 	public void setButtonWin(String nip, Image img) {
-		int winnum = 0; //µ±Ç°ÕıÔÚ¼à¿ØµÄ´°¿ÚµÄÊıÁ¿
+		int winnum = 0; //å½“å‰æ­£åœ¨ç›‘æ§çš„çª—å£çš„æ•°é‡
 		for(int i = 0; i < ip1.length; i++) {
 			if(ip1[i] != null && !ip1[i].equals("")) {
 				if(nip.equals(ip1[i])){
-					//FIXME ÔÚÒÑÓĞ¼à¿Ø´°¿ÚµÄbuttonÖĞÕÒµ½ipÒ»ÑùµÄ£¬¸üĞÂÕâ¸ö´°¿Ú
+					//FIXME åœ¨å·²æœ‰ç›‘æ§çª—å£çš„buttonä¸­æ‰¾åˆ°ipä¸€æ ·çš„ï¼Œæ›´æ–°è¿™ä¸ªçª—å£
 					winnum = i + 6;
 					break;
 				}
 			} else {
-				//±È½Ïµ½ÕâÀï£¬·¢ÏÖÓĞÒ»¸öbuttonÃ»ÓĞ×öÉÏÒÑÓĞ¼à¿Ø´°¿ÚµÄ±êÖ¾£¨ip£©£¬¾ÍÓÃÕâ¸öbutton½øĞĞ¼à¿Ø
-				ip1[i] = nip; //button×÷±ê¼Ç
+				//æ¯”è¾ƒåˆ°è¿™é‡Œï¼Œå‘ç°æœ‰ä¸€ä¸ªbuttonæ²¡æœ‰åšä¸Šå·²æœ‰ç›‘æ§çª—å£çš„æ ‡å¿—ï¼ˆipï¼‰ï¼Œå°±ç”¨è¿™ä¸ªbuttonè¿›è¡Œç›‘æ§
+				ip1[i] = nip; //buttonä½œæ ‡è®°
 				winnum = i + 6;
 				break;
 			}
 		}
 		//button.add
-		//FIXME ¸ÄÍ¼Æ¬
+		//FIXME æ”¹å›¾ç‰‡
 		button[winnum].setIcon(new ImageIcon(img));
 		
-		System.out.println("´°¿ÚºÅÎª£º" + (winnum - 6));
-		System.out.println("lalala·şÎñ¶ËÊ¶±ğµÄip:" + nip);
+		System.out.println("çª—å£å·ä¸ºï¼š" + (winnum - 6));
+		System.out.println("lalalaæœåŠ¡ç«¯è¯†åˆ«çš„ip:" + nip);
 	}
 
 	public static void main(String args[]) {
@@ -205,7 +205,7 @@ public class MainFrameS extends JFrame implements Runnable {
 			
 			server.open();
 			
-			//³õÊ¼»¯·şÎñ¶Ë£¬²»´ø¼à¿Ø´°¿Ú
+			//åˆå§‹åŒ–æœåŠ¡ç«¯ï¼Œä¸å¸¦ç›‘æ§çª—å£
 			MainFrameS.getInstance("FarContrl");
 			sr.open();
 			System.out.println("Communication1");

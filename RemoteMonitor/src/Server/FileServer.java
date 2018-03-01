@@ -33,13 +33,13 @@ public class FileServer {
 
 	public void open() throws IOException {
 		ss = new ServerSocket(8821);
-		System.out.println("sssssSocket...");
+		System.out.println("FileSocket...");
 	}
 
 	public void choose() {
 		JFileChooser jfc = new JFileChooser();
 		jfc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-		jfc.showDialog(new JLabel(), "Choose");
+		jfc.showDialog(new JLabel(), "é€‰æ‹©");
 		File file = jfc.getSelectedFile();
 		if (file != null) {
 			path = file.getAbsolutePath();
@@ -53,8 +53,8 @@ public class FileServer {
 	public Socket getsever() {
 		Socket s = null;
 		try {
-			s = ss.accept();// µÈ´ı¿Í»§¶Ë Á¬½Ó8821¶Ë¿Ú
-			System.out.println("½¨Á¢socketÁ´½Ó");
+			s = ss.accept();// ç­‰å¾…å®¢æˆ·ç«¯ è¿æ¥8821ç«¯å£
+			System.out.println("å»ºç«‹socketé“¾æ¥");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -66,26 +66,18 @@ public class FileServer {
 		
 		try {
 			while (true) {
-				// Ñ¡Ôñ½øĞĞ´«ÊäµÄÎÄ¼ş
+				// Ñ¡ï¿½ï¿½ï¿½ï¿½Ğ´ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
 				String filePath = path;
 				File fi = new File(filePath);
 				System.out.println("st:" + st);
 				ps = new DataOutputStream(st.getOutputStream());
-				System.out.println("ÎÄ¼ş³¤¶È:" + (int) fi.length());
-				System.out.println("ÎÄ¼şÂ·¾¶:" + path);
-
-				// public Socket accept() throws
-				// IOExceptionÕìÌı²¢½ÓÊÜµ½´ËÌ×½Ó×ÖµÄÁ¬½Ó¡£´Ë·½·¨ÔÚ½øĞĞÁ¬½ÓÖ®Ç°Ò»Ö±×èÈû¡£
-
-				// DataInputStream dis = new DataInputStream(new
-				// BufferedInputStream(s.getInputStream()));
-				// dis.readByte();
-
+				System.out.println("æ–‡ä»¶é•¿åº¦:" + (int) fi.length());
+				System.out.println("æ–‡ä»¶è·¯å¾„:" + path);
+				
 				fis = new DataInputStream(new BufferedInputStream(
-						new FileInputStream(fi/* new File(filePath) */)));
-
-				// ½«ÎÄ¼şÃû¼°³¤¶È´«¸ø¿Í»§¶Ë¡£ÕâÀïÒªÕæÕıÊÊÓÃËùÓĞÆ½Ì¨£¬ÀıÈçÖĞÎÄÃûµÄ´¦Àí£¬»¹ĞèÒª¼Ó¹¤£¬¾ßÌå¿ÉÒÔ²Î¼ûThink In Java
-				// 4thÀïÓĞÏÖ³ÉµÄ´úÂë¡£
+						new FileInputStream(fi)));
+				// å°†æ–‡ä»¶ååŠé•¿åº¦ä¼ ç»™å®¢æˆ·ç«¯ã€‚è¿™é‡Œè¦çœŸæ­£é€‚ç”¨æ‰€æœ‰å¹³å°ï¼Œä¾‹å¦‚ä¸­æ–‡åçš„å¤„ç†ï¼Œè¿˜éœ€è¦åŠ å·¥ï¼Œå…·ä½“å¯ä»¥å‚è§Think In Java
+				// 4thé‡Œæœ‰ç°æˆçš„ä»£ç ã€‚
 				ps.writeUTF(fi.getName());
 				ps.flush();
 				ps.writeLong((long) fi.length());
@@ -106,15 +98,15 @@ public class FileServer {
 	                    ps.write(buf, 0, read);
 	                }
 	                ps.flush();
-	                // ×¢Òâ¹Ø±ÕsocketÁ´½ÓÅ¶£¬²»È»¿Í»§¶Ë»áµÈ´ıserverµÄÊı¾İ¹ıÀ´£¬
-	                // Ö±µ½socket³¬Ê±£¬µ¼ÖÂÊı¾İ²»ÍêÕû¡£                
+	                // æ³¨æ„å…³é—­socketé“¾æ¥å“¦ï¼Œä¸ç„¶å®¢æˆ·ç«¯ä¼šç­‰å¾…serverçš„æ•°æ®è¿‡æ¥ï¼Œ
+	                // ç›´åˆ°socketè¶…æ—¶ï¼Œå¯¼è‡´æ•°æ®ä¸å®Œæ•´ã€‚       
 	                fis.close();
 	                try{
 	                st.close();    
 	                }catch(Exception exx){
 	                	 exx.printStackTrace();
-	                }/***********/
-	                System.out.println("ÎÄ¼ş´«ÊäÍê³É");
+	                }
+	                System.out.println("æ–‡ä»¶ä¼ è¾“å®Œæˆ");
 	            }
 
 	        } catch (Exception e) {

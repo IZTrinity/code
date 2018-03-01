@@ -1,75 +1,59 @@
 package Server;
 
-/*ÆäÖĞclientÎª¿Í»§¶Ë£¨¿ØÖÆ¶Ë£©£¬servletÎª·şÎñ¶Ë£¨±»¿ØÖÆ¶Ë£©£¬
- * Ö±½ÓÔËĞĞÁ½¸öjarÎÄ¼ş¼´¿É¡££¨ÔËĞĞjarÎÄ¼ş±ØĞëÔÚµçÄÔ°²×°jdk¡££©
- * ½ÓÊÜ½ØÍ¼
-*/
-import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.zip.ZipInputStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 
 import ServerGUI.MainFrameS;
-import ServerGUI.MainFrameS;
-//ÆÁÄ»¼à¿ØµÄÏÔÊ¾¿òÓÃJButton,Ö±½ÓÓÃÒ»¸ösetImageIcon(imaegIcon)¾Í¿ÉÒÔÏÔÊ¾Í¼Æ¬£¬¾Í²»ÓÃÖØ»­JFrameµÄ±³¾°
-public class  RemoteMonitored  extends JButton implements Runnable{  
+//å±å¹•ç›‘æ§çš„æ˜¾ç¤ºæ¡†ç”¨JButton,ç›´æ¥ç”¨ä¸€ä¸ªsetImageIcon(imaegIcon)å°±å¯ä»¥æ˜¾ç¤ºå›¾ç‰‡ï¼Œå°±ä¸ç”¨é‡ç”»JFrameçš„èƒŒæ™¯
+public class  RemoteMonitored  extends JButton implements Runnable{
     private static final long serialVersionUID = 1L;  
     Dimension screenSize;  
     private ServerSocket imgss;
     private Socket imgs;
     public String ip=null;
     public  RemoteMonitored () {  
-    	//this.setSize(width, height);//ÉèÖÃ°´Å¥µÄ´óĞ¡
+    	//this.setSize(width, height);//è®¾ç½®æŒ‰é’®çš„å¤§å°
     	try {
 			imgss = new ServerSocket(5001);
 		} catch (IOException e) {
-			// TODO ×Ô¶¯Éú³ÉµÄ catch ¿é
 			e.printStackTrace();
 		}
     }  
-//ÔÚÏß³ÌÖĞ²»¶Ï»ñÈ¡Í¼Æ¬
+//åœ¨çº¿ç¨‹ä¸­ä¸æ–­è·å–å›¾ç‰‡
 	@Override
 	public void run() {
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		while(true){
 			try {
 				while((imgs = imgss.accept()) != null){
-					System.out.println("¶Ë¿Ú5001ÓĞÁ¬½Ó");
-					
+					System.out.println("ç«¯å£5001æœ‰è¿æ¥");
+
 					ip = imgs.getInetAddress().getHostAddress(); 
 					System.out.println("ip is:"+ip);
 					
 					InputStream is = imgs.getInputStream();
 					Image i = ImageIO.read(is);
 					if(i != null){
-						System.out.println("Í¼Æ¬½ÓÊÜ³É¹¦");
-						//¶ÔÍ¼Ïñ½øĞĞÑ¹Ëõ£¬Ê¹µÃÍ¼Æ¬·ûºÏJButton´óĞ¡
-
+						System.out.println("å›¾ç‰‡æ¥å—æˆåŠŸ");
+						//å¯¹å›¾åƒè¿›è¡Œå‹ç¼©ï¼Œä½¿å¾—å›¾ç‰‡ç¬¦åˆJButtonå¤§å°
 						i = i.getScaledInstance(320, 160, Image.SCALE_SMOOTH);
-						//i = i.getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH);
-						//this.setIcon(new ImageIcon(i));
-						//FIXME Ã¿´ÎÊÕµ½Í¼Æ¬£¬¾ÍË¢ĞÂ¼à¿Ø´°¿ÚµÄ»­Ãæ
+//						i = i.getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH);
+//						this.setIcon(new ImageIcon(i));
+
+						//FIXME æ¯æ¬¡æ”¶åˆ°å›¾ç‰‡ï¼Œå°±åˆ·æ–°ç›‘æ§çª—å£çš„ç”»é¢
 						MainFrameS.getInstance("FarContrl").setButtonWin(ip, i);
 					}
 				}
+				
 			} catch (IOException e) {
-				// TODO ×Ô¶¯Éú³ÉµÄ catch ¿é
 				e.printStackTrace();
 			}
 		}

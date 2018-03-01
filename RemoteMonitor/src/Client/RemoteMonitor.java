@@ -12,11 +12,15 @@ import java.util.zip.ZipOutputStream;
 
 import javax.imageio.ImageIO;
 
+/*
+ * 截图线程
+ */
 public class RemoteMonitor extends Thread {
 	private Dimension screenSize;
 	private Rectangle rectangle;
 	private Robot robot;
 	OutputStream os;
+	String ip = MainFrameC.ip;//"localhost" 设置成服务器IP
 	public RemoteMonitor() {
 		screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		rectangle = new Rectangle(screenSize);// 可以指定捕获屏幕区域
@@ -33,12 +37,14 @@ public class RemoteMonitor extends Thread {
 		Socket socket = null;
 		while (true) {
 			try {
-				socket = new Socket("172.25.51.17", 5001);// 连接远程IP
+				socket = new Socket(ip, 5001);// 连接远程IP
 				BufferedImage image = robot.createScreenCapture(rectangle);// 捕获制定屏幕矩形区域
-
 				os = socket.getOutputStream();
 				ImageIO.write(image, "JPEG", os);
-				
+				/*这一段有错误
+				os.setLevel(9);
+				os.putNextEntry(new ZipEntry("test.jpg"));
+				JPEGCodec.createJPEGEncoder(os).encode(image);// 图像编码成JPEG*(不同版本有兼容问题)*/
 				os.flush();
 				socket.close();
 				Thread.sleep(1000);// 每秒20帧
@@ -58,6 +64,6 @@ public class RemoteMonitor extends Thread {
 					}
 				}
 			}
-		}
-	}
+		}//while(true)
+	}//run
 }

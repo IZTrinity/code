@@ -7,8 +7,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
-import Server.ServerProcess.write_Thread;
-
 public class ServerProcess extends ArrayList {
 	private SocketManager socketMan = new SocketManager();
 	private ServerSocket serverSocket;
@@ -27,7 +25,6 @@ public class ServerProcess extends ArrayList {
 			e.printStackTrace();
 		}
 	}
-
 
 	class write_Thread extends Thread {
 		Socket socket = null;
@@ -51,10 +48,5 @@ public class ServerProcess extends ArrayList {
 				e.printStackTrace();
 			}
 		}
-	}
-
-	public static void main(String args[]) {
-		ServerProcess server = new ServerProcess();
-		server.getServer();
 	}
 }
