@@ -18,7 +18,7 @@ import javax.swing.JFrame;
 	import javax.swing.JTextArea;
 	import javax.swing.JTextField;
 /*
- * 客户端的主界面
+ * 瀹㈡埛绔殑涓荤晫闈�
  */
 
 public class MainFrameC extends JFrame implements Runnable {
@@ -35,7 +35,7 @@ public class MainFrameC extends JFrame implements Runnable {
 		private JButton button2=new JButton(" ");
 
 		private static FileClientSocket cs = null;
-		public static String ip = "172.25.51.17";//"localhost" 设置成服务器IP
+		public static String ip = "172.25.51.10";//"localhost" 璁剧疆鎴愭湇鍔″櫒IP
 		//static String ip = LoginFrame.ip;
 		
 	   
@@ -46,12 +46,12 @@ public class MainFrameC extends JFrame implements Runnable {
 			jpanel.setLayout(null);
 			msgArea.setEditable(false);
 			
-			Icon runImg1 = new ImageIcon(this.getClass().getClassLoader().getResource("images/007.jpg"));
+			Icon runImg1 = new ImageIcon(this.getClass().getClassLoader().getResource("images/001.jpg"));
 			button1.setIcon(runImg1);
 			jpanel.add(button1);
 		    button1.setBounds(10, 10, 130, 132);
 		    
-		    Icon runImg2 = new ImageIcon(this.getClass().getClassLoader().getResource("images/007.jpg"));
+		    Icon runImg2 = new ImageIcon(this.getClass().getClassLoader().getResource("images/001.jpg"));
 			button2.setIcon(runImg2);
 			jpanel.add(button2);
 			button2.setBounds(180, 10, 130, 132);
@@ -73,7 +73,7 @@ public class MainFrameC extends JFrame implements Runnable {
 					sendField.setText("");
 				}
 			});
-			//FIXME 不设关闭动作，就只是默认隐藏窗口，发送图片的动作还在进行
+			//FIXME 涓嶈鍏抽棴鍔ㄤ綔锛屽氨鍙槸榛樿闅愯棌绐楀彛锛屽彂閫佸浘鐗囩殑鍔ㄤ綔杩樺湪杩涜
 			//this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 			this.setVisible(true);
 		}
@@ -104,10 +104,10 @@ public class MainFrameC extends JFrame implements Runnable {
 
 	public static void main(String args[]) {
 
-			new RemoteMonitor().start(); // 截图线程开始
-			MainFrameC clientframe = new MainFrameC("communication"); // 打开主界面
+			new RemoteMonitor().start(); // 鎴浘绾跨▼寮�濮�
+			MainFrameC clientframe = new MainFrameC("communication"); // 鎵撳紑涓荤晫闈�
 			clientframe.setVisible(true);
-			clientframe.getSocket();// 放前面
+			clientframe.getSocket();// 鏀惧墠闈�
 			new FileClient();
 		// ControlThread ct = new ControlThread("localhost",9999);
 		// new Thread(ct).start();
