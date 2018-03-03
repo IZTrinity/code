@@ -35,7 +35,7 @@ public class MainFrameC extends JFrame implements Runnable {
 		private JButton button2=new JButton(" ");
 
 		private static FileClientSocket cs = null;
-		public static String ip = "172.25.51.10";//"localhost" 璁剧疆鎴愭湇鍔″櫒IP
+		public static String ip = "172.25.51.10";//"localhost" IP
 		//static String ip = LoginFrame.ip;
 		
 	   

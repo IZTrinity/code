@@ -60,7 +60,7 @@ public class FileClient {
 		}
 
 		try {
-			String savePath = "D:\\";
+			String savePath = "C:\\Users\\Shannon\\Desktop";
 			int bufferSize = 8192;
 			byte[] buf = new byte[bufferSize];
 			int passedlen = 0;
@@ -90,7 +90,7 @@ public class FileClient {
 		
 	         System.out.println("接收完成，文件存为" + savePath + "\n");
 
-			JOptionPane.showMessageDialog(newFrame.getContentPane(), "接收到文件,保存在了D盘!", "系统信息",
+			JOptionPane.showMessageDialog(newFrame.getContentPane(), "接收到文件,保存在了Desktop!", "系统信息",
 						JOptionPane.INFORMATION_MESSAGE);
              fileOut.close();
          } catch (Exception e) {
