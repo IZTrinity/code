@@ -1,4 +1,4 @@
-![image](https://github.com/Trrinity/RemoteMonitor/67.jpg)   
+![image](https://github.com/Trrinity/RemoteMonitor/blob/master/67.jpg)   
 
 ![image](https://github.com/Trrinity/RemoteMonitor/blob/master/communication.gif)   
 
