@@ -2,6 +2,8 @@
 
 ![image](https://github.com/Trrinity/RemoteMonitor/blob/master/communication.gif)   
 
+![image](https://github.com/Trrinity/RemoteMonitor/blob/master/many.gif)   
+
 ## 1.导入文件显示很多包有错误的话，请把文件编码改为UTF-8
 ## 2.运行Client.jar要先把Client中的的"localhost"换成服务器的IP地址。。（现在写的是我的IP地址“172.25.XX.XX”）
 ## 3.直接运行运行Server.jar
