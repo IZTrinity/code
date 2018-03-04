@@ -4,6 +4,17 @@
 
 ![image](https://github.com/Trrinity/RemoteMonitor/blob/master/many.gif)   
 
+
+## 远程桌面控制系统
+
+本项目是系统级的管理工具，可远程监视和控制其他计算机。采用c/s架构模式，核心功能是进行远程监控。
+
+## 系统功能概述
+
+远程监控，传输文件，截取屏幕，显示时间，发送消息
+
+系统介绍：https://github.com/JIMMY-LOLITA/Lolita/wiki
+
 ## 1.导入文件显示很多包有错误的话，请把文件编码改为UTF-8
 ## 2.运行Client.jar要先把Client中的的"localhost"换成服务器的IP地址。。（现在写的是我的IP地址“172.25.XX.XX”）
 ## 3.直接运行运行Server.jar
