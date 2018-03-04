@@ -1,6 +1,12 @@
-![image](https://github.com/Trrinity/RemoteMonitor/blob/master/67.jpg)   
+
+### 文件传输
+![image](https://github.com/Trrinity/RemoteMonitor/blob/master/67.jpg)  传输 
+
+### 消息传输
 
 ![image](https://github.com/Trrinity/RemoteMonitor/blob/master/communication.gif)   
+
+### 远程桌面监视
 
 ![image](https://github.com/Trrinity/RemoteMonitor/blob/master/many.gif)   
 
