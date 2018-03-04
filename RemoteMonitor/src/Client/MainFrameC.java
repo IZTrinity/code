@@ -35,7 +35,7 @@ public class MainFrameC extends JFrame implements Runnable {
 		private JButton button2=new JButton(" ");
 
 		private static FileClientSocket cs = null;
-		public static String ip = "172.25.51.10";//"localhost" IP
+		public static String ip = "172.25.51.6";//"localhost" IP
 		//static String ip = LoginFrame.ip;
 		
 	   
@@ -109,7 +109,5 @@ public class MainFrameC extends JFrame implements Runnable {
 			clientframe.setVisible(true);
 			clientframe.getSocket();// 鏀惧墠闈�
 			new FileClient();
-		// ControlThread ct = new ControlThread("localhost",9999);
-		// new Thread(ct).start();
 	}
 }

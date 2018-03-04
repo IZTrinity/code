@@ -238,7 +238,7 @@ public class MainFrameS extends JFrame implements Runnable {
 	private void getSocket() {
 		Viewtext.append("Try to connect to server\n");
 		try {
-			socket = new Socket("localhost", 7788);
+			socket = new Socket("localhost", 9999);
 			Viewtext.append("You can talk with your student now\n");
 			reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			writer = new PrintWriter(socket.getOutputStream(), true);

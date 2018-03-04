@@ -11,7 +11,7 @@ public class ServerProcess extends ArrayList {
 	private SocketManager socketMan = new SocketManager();
 	private ServerSocket serverSocket;
 	public void open() throws IOException {
-		serverSocket = new ServerSocket(7788);
+		serverSocket = new ServerSocket(9999);
 		System.out.println("sssssSocket...");
 	}
 	public void getServer() {
